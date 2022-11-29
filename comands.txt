@@ -1,0 +1,35 @@
+[cloudera@quickstart ~]$ hdfs dfs -copeFromLocal /home/cloudera/Desktop/vim1 /user/cloudera
+-copeFromLocal: Unknown command
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim1 /user/cloudera
+copyFromLocal: `/home/cloudera/Desktop/vim1': No such file or directory
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim1.txt /user/cloudera
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim2.txt /user/cloudera
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim3.txt /user/cloudera
+[cloudera@quickstart ~]$ hdfs dfs -copyFromLocal /home/cloudera/Desktop/vim4.txt /user/cloudera
+[cloudera@quickstart ~]$ hdfs dfs -ls
+Found 4 items
+-rw-r--r--   1 cloudera cloudera     736519 2022-11-28 04:57 vim1.txt
+-rw-r--r--   1 cloudera cloudera     770324 2022-11-28 05:02 vim2.txt
+-rw-r--r--   1 cloudera cloudera     843205 2022-11-28 05:02 vim3.txt
+-rw-r--r--   1 cloudera cloudera     697960 2022-11-28 05:02 vim4.txt
+[cloudera@quickstart ~]$ 
+[cloudera@quickstart ~]$ hdfs dfs -getmerge -nl /user/cloudera/vim1.txt /user/cloudera/vim2.txt /user/cloudera/vim3.txt /user/cloudera/vim4.txt /home/cloudera/Desktop/merged_file.txt
+[cloudera@quickstart ~]$ hdfs dfs -chmod 764 /user/cloudera/vim1.txt
+[cloudera@quickstart ~]$ hdfs dfs -ls
+Found 4 items
+-rwxrw-r--   1 cloudera cloudera     736519 2022-11-28 04:57 vim1.txt
+-rw-r--r--   1 cloudera cloudera     770324 2022-11-28 05:02 vim2.txt
+-rw-r--r--   1 cloudera cloudera     843205 2022-11-28 05:02 vim3.txt
+-rw-r--r--   1 cloudera cloudera     697960 2022-11-28 05:02 vim4.txt
+[cloudera@quickstart ~]$ hdfs dfs -du vim1.txt
+736519  736519  vim1.txt
+[cloudera@quickstart ~]$ hdfs dfs -du -h vim1.txt
+719.3 K  719.3 K  vim1.txt
+[cloudera@quickstart ~]$ hdfs dfs -setrep 2 vim1.txt
+Replication 2 set: vim1.txt
+[cloudera@quickstart ~]$ hdfs dfs -du -h vim1.txt
+719.3 K  1.4 M  vim1.txt
+[cloudera@quickstart ~]$ hdfs dfs -cat vim1.txt | wc -l
+3392
+
+
